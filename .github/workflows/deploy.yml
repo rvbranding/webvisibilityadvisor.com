@@ -1,0 +1,39 @@
+name: Deploy Website
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Dependencies
+        run: npm ci
+
+      # WEB3FORMS_ACCESS_KEY is optional. Set it as a repo secret and the
+      # contact form posts to Web3Forms; leave it unset and the form falls back
+      # to a pre-filled mailto: to the address printed on the page.
+      - name: Build Project
+        run: npx vite build
+        env:
+          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
+
+      - name: Deploy Website
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 132.148.180.223
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./dist/
+          server-dir: /

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://webvisibilityadvisor.com/sitemap.xml

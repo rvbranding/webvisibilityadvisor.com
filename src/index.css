@@ -1,0 +1,292 @@
+@import './theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================================
+   BRUTAL DESIGN SYSTEM
+   Flat colour in slabs, 0px radius, heavy rules, hard offset shadows and
+   mono micro-labels. No gradients, no soft shadows, no rounded corners —
+   hierarchy comes from weight, scale and the colour of the block.
+   ========================================================================= */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: rgb(var(--paper));
+    color: rgb(var(--ink));
+    font-family: Archivo, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Colour is left to the utility on each heading — setting it here would
+     out-specify `text-paper` and black out every heading on a dark slab. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    letter-spacing: -0.03em;
+  }
+
+  ::selection {
+    background: rgb(var(--volt));
+    color: rgb(var(--ink));
+  }
+
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: rgb(var(--ink));
+    -webkit-box-shadow: 0 0 0 1000px rgb(var(--paper2)) inset;
+  }
+
+  :focus-visible {
+    outline: 3px solid rgb(var(--blaze));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Display type — tight, heavy, uppercase. */
+  .b-display {
+    font-family: Archivo, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    text-transform: uppercase;
+  }
+
+  .b-title {
+    font-family: Archivo, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  .b-figure {
+    font-family: Archivo, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  /* Mono micro-label used for section numbers, tags and meta. */
+  .b-label {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .b-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Running text sits in a humanist weight so long paragraphs stay readable
+     under an otherwise very heavy display face. */
+  .b-body {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: -0.005em;
+  }
+
+  /* Buttons: square, bordered, and they snap down on press. */
+  .b-btn {
+    @apply inline-flex items-center justify-center gap-2.5 border-[3px] px-7 py-3.5 text-[13px] font-extrabold uppercase tracking-[0.08em] transition-all duration-150;
+    border-color: rgb(var(--ink));
+  }
+
+  .b-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: none !important;
+  }
+
+  .b-btn-primary {
+    background: rgb(var(--blaze));
+    color: rgb(var(--paper));
+    box-shadow: 5px 5px 0 0 rgb(var(--ink));
+  }
+
+  .b-btn-primary:hover {
+    background: rgb(var(--ink));
+    color: rgb(var(--volt));
+  }
+
+  .b-btn-volt {
+    background: rgb(var(--volt));
+    color: rgb(var(--ink));
+    box-shadow: 5px 5px 0 0 rgb(var(--ink));
+  }
+
+  .b-btn-volt:hover {
+    background: rgb(var(--ink));
+    color: rgb(var(--volt));
+  }
+
+  .b-btn-ghost {
+    background: transparent;
+    color: rgb(var(--ink));
+  }
+
+  .b-btn-ghost:hover {
+    background: rgb(var(--ink));
+    color: rgb(var(--paper));
+  }
+
+  /* On a dark slab the border has to invert or the button disappears. */
+  .b-btn-onink {
+    background: rgb(var(--volt));
+    color: rgb(var(--ink));
+    border-color: rgb(var(--paper));
+    box-shadow: 5px 5px 0 0 rgb(var(--paper));
+  }
+
+  .b-btn-onink:hover {
+    background: rgb(var(--paper));
+  }
+
+  /* A card is a bordered slab. The only hover is the shadow appearing. */
+  .b-card {
+    background: rgb(var(--paper2));
+    border: 3px solid rgb(var(--ink));
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+
+  .b-card-hover:hover {
+    box-shadow: 6px 6px 0 0 rgb(var(--ink));
+    transform: translate(-2px, -2px);
+  }
+
+  .b-field {
+    @apply w-full border-[3px] bg-transparent px-4 py-3 text-[15px];
+    border-color: rgb(var(--ink));
+    background: rgb(var(--paper));
+    color: rgb(var(--ink));
+  }
+
+  .b-field::placeholder {
+    color: rgb(var(--muted));
+  }
+
+  .b-field:focus {
+    outline: none;
+    box-shadow: 4px 4px 0 0 rgb(var(--blaze));
+    border-color: rgb(var(--ink));
+  }
+
+  /* Engineering grid behind hero and CTA slabs. */
+  .b-grid {
+    background-image:
+      linear-gradient(to right, rgb(var(--ink) / 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--ink) / 0.08) 1px, transparent 1px);
+    background-size: 88px 88px;
+  }
+
+  .b-grid-light {
+    background-image:
+      linear-gradient(to right, rgb(var(--paper) / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(var(--paper) / 0.1) 1px, transparent 1px);
+    background-size: 88px 88px;
+  }
+
+  /* Diagonal hatch for empty and accent panels. */
+  .b-hatch {
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgb(var(--ink) / 0.16) 0,
+      rgb(var(--ink) / 0.16) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  }
+}
+
+.b-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.b-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.b-ticker-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.b-ticker:hover .b-ticker-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .b-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .b-ticker-track,
+  .animate-blink {
+    animation: none !important;
+  }
+}
+
+/* Slide transition for the hero. Keyed by slide index, so React remounts the
+   node and the animation replays on every advance. */
+.b-fade {
+  animation: b-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes b-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-fade {
+    animation: none;
+  }
+}
+
+/* A card flipped to the accent ground. The text colours have to move with it —
+   the paper-tuned greys measure under 4.5:1 on yellow. */
+.b-card-volt {
+  background: rgb(var(--volt));
+}
+
+.b-card-volt .b-body,
+.b-card-volt .b-mono,
+.b-card-volt p,
+.b-card-volt li {
+  color: rgb(var(--ink) / 0.82);
+}
+
+.b-card-volt .b-label {
+  color: rgb(var(--ink) / 0.62);
+}
