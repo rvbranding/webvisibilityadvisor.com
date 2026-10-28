@@ -27,7 +27,7 @@ jobs:
       - name: Deploy Website
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: 132.148.180.223
+          server: 148.72.51.36
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
