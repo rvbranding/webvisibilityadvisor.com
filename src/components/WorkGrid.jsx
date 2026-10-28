@@ -69,7 +69,7 @@ function Shot({ url, name }) {
       <img
         src={src}
         alt={`${name} website`}
-        loading="lazy"
+        loading="eager"
         decoding="async"
         width="480"
         height="300"

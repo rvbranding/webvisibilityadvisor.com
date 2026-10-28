@@ -188,7 +188,7 @@ export default function Hero() {
 
           {/* ---------------- Right: slab synced to the slide ---------------- */}
           <Reveal delay={160}>
-            <div className="border-[3px] border-ink bg-ink p-6 shadow-[10px_10px_0_0_theme(colors.blaze)] lg:p-7">
+            <div className="border-[3px] border-ink bg-ink p-6 shadow-[10px_10px_0_0_theme(colors.volt)] lg:p-7">
               <div className="flex items-center justify-between gap-4 border-b-2 border-paper/25 pb-5">
                 <div className="min-w-0">
                   <p className="b-label text-volt">Featured service</p>

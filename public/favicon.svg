@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#262626"/>
-  <text x="32" y="32" fill="#e1672a" font-family="Helvetica, Arial, sans-serif"
+  <rect width="64" height="64" fill="#1c1527"/>
+  <text x="32" y="32" fill="#e879f9" font-family="Helvetica, Arial, sans-serif"
         font-size="15" font-weight="700" text-anchor="middle"
         dominant-baseline="central">WVA</text>
 </svg>
