@@ -1,7 +1,9 @@
 name: Deploy Website
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   ftp-deploy:
@@ -19,13 +21,8 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      # WEB3FORMS_ACCESS_KEY is optional. Set it as a repo secret and the
-      # contact form posts to Web3Forms; leave it unset and the form falls back
-      # to a pre-filled mailto: to the address printed on the page.
       - name: Build Project
         run: npx vite build
-        env:
-          VITE_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
 
       - name: Deploy Website
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
